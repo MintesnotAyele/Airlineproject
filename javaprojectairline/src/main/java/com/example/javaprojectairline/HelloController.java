@@ -126,7 +126,12 @@ String str3;
                         btnsub.setLayoutY(150);
                         btnbak.setLayoutX(150);
                         btnbak.setLayoutY(150);
-
+btnbak.setOnAction(new EventHandler<ActionEvent>() {
+    @Override
+    public void handle(ActionEvent actionEvent) {
+        System.exit(0);
+    }
+});
                    btnsub.setOnAction((new EventHandler<ActionEvent>() {
                        @Override
                        public void handle(ActionEvent actionEvent) {
@@ -150,7 +155,7 @@ String ss=Double.toString(a);
         String dpt=rs1.getString("departure_time");
         String art= rs1.getString("arrival_time");
         String dt= rs1.getString("flight_date");
-        ar1.setContentText("your ticket infomation is \n"+str1+" "+dp+" to "+des+" \n"+dpt+" "+art+" "+dt+ss+"\n");
+        ar1.setContentText("your ticket infomation is \n"+str1+" "+dp+" to "+des+" \n"+dpt+" "+art+" "+dt+" tik_num "+ss+"\n");
     ar1.showAndWait();
         String st="Insert into DATATABLE(USERNAME,DEPARTURE_PLACE,DESTINATION_PLACE,TICKET_NUMBER,DEPARTURE_TIME,ARRIVAL_TIME,FLIGHT_NUMBER) VALUES('" + str1 + "','" + sr + "','"+ sr1 +"','"+ss+"','"+dpt+"','"+art+"','"+pp+"')";
         stmt1.executeQuery(st);
@@ -253,7 +258,7 @@ System.exit(0);
                                 Connection connection1=db1.conMethod();
                                 try {
                                     Statement stmt2=connection1.createStatement();
-                                    String dd="delete from datatable where flight_number='"+pp+"'";
+                                    String dd="delete from datatable where TICKET_NUMBER='"+pp+"'";
                                     stmt2.executeQuery(dd);
                                 } catch (SQLException e) {
                                     throw new RuntimeException(e);

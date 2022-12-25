@@ -21,15 +21,13 @@ public class Nconn {
                 //alert.setContentText("connected");
 
             }
-            else
-                alert.setContentText("not connected");
+            else{}
 
         } catch (Exception e) {
 
 
-            alert.setContentText(e.toString());
         }
-        alert.showAndWait();
+
 
         return connection;
     }
