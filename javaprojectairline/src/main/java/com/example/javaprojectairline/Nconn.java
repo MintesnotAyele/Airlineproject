@@ -17,11 +17,7 @@ public class Nconn {
         try {
             Class.forName(DRIVER);
             connection= DriverManager.getConnection(URL,USERNAME,PASSWORD);
-            if(connection!=null) {
-                //alert.setContentText("connected");
 
-            }
-            else{}
 
         } catch (Exception e) {
 

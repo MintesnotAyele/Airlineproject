@@ -60,7 +60,7 @@ public class HelloApplication extends Application {
 
         btn.setOnAction(new HelloController(txt1,txt2,txt3));
         g.getChildren().addAll(lbl1,lbl2,lbl3,txt1,txt2,txt3,btn1,btn);
-        Scene scene = new Scene(g,500,500, Color.CHOCOLATE);
+        Scene scene = new Scene(g,500,500, Color.DIMGRAY);
         stage.setTitle("java project");
         stage.setScene(scene);
         stage.setResizable(false);

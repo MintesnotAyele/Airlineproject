@@ -129,7 +129,7 @@ String str3;
 btnbak.setOnAction(new EventHandler<ActionEvent>() {
     @Override
     public void handle(ActionEvent actionEvent) {
-        System.exit(0);
+       stg2.close();
     }
 });
                    btnsub.setOnAction((new EventHandler<ActionEvent>() {
@@ -149,13 +149,14 @@ try{
     if(rs1.next()){
 double a=rad();
 String ss=Double.toString(a);
+String pr=rs1.getString("PRICE");
         String pp=rs1.getString("FLIGHT_NUMBER");
         String dp=rs1.getString("departure_place");
         String des=rs1.getString("destination_place");
         String dpt=rs1.getString("departure_time");
         String art= rs1.getString("arrival_time");
         String dt= rs1.getString("flight_date");
-        ar1.setContentText("your ticket infomation is \n"+str1+" "+dp+" to "+des+" \n"+dpt+" "+art+" "+dt+" tik_num "+ss+"\n");
+        ar1.setContentText("your ticket infomation is \n"+str1+" "+dp+" to "+des+" \n"+dpt+"-"+art+" "+dt+" tik_num "+ss+"\n"+"PRICE IS  "+pr+" birr");
     ar1.showAndWait();
         String st="Insert into DATATABLE(USERNAME,DEPARTURE_PLACE,DESTINATION_PLACE,TICKET_NUMBER,DEPARTURE_TIME,ARRIVAL_TIME,FLIGHT_NUMBER) VALUES('" + str1 + "','" + sr + "','"+ sr1 +"','"+ss+"','"+dpt+"','"+art+"','"+pp+"')";
         stmt1.executeQuery(st);
@@ -171,7 +172,7 @@ catch (SQLException e) {
                         g2.getChildren().addAll(txtx,lbldp,txtx1,lblcx,txtd,lbld,btnsub,btnbak);
 
                         stg2.setTitle("ticket form");
-                        Scene scene2 = new Scene(g2, 500, 500, Color.CHOCOLATE);
+                        Scene scene2 = new Scene(g2, 500, 500, Color.BROWN);
                         stg2.setScene(scene2);
                         stg2.setResizable(false);
                         stg2.show();
@@ -205,11 +206,11 @@ catch (SQLException e) {
                         lbltn.setLayoutX(10);
                         lbltn.setLayoutY(80);
 
-                        Label lblfn=new Label("flight number");
-                        lblfn.setFont(Font.font("italic", FontWeight.BOLD,20));
-                        lblfn.setTextFill(Color.LIGHTGRAY);
-                        lblfn.setLayoutX(10);
-                        lblfn.setLayoutY(120);
+                       Label lblfn=new Label("flight_number");
+                       lblfn.setFont(Font.font("italic", FontWeight.BOLD, 20));
+                       lblfn.setTextFill(Color.LIGHTGRAY);
+                       lblfn.setLayoutX(10);
+                       lblfn.setLayoutY(120);
 
                         Label lblpn=new Label("passport number");
                         lblpn.setFont(Font.font("italic", FontWeight.BOLD,20));
@@ -246,7 +247,7 @@ catch (SQLException e) {
                         btnbak1.setOnAction(new EventHandler<ActionEvent>() {
                             @Override
                             public void handle(ActionEvent actionEvent) {
-System.exit(0);
+stg3.close();
                             }
                         });
 
@@ -258,15 +259,18 @@ System.exit(0);
                                 Connection connection1=db1.conMethod();
                                 try {
                                     Statement stmt2=connection1.createStatement();
-                                    String dd="delete from datatable where TICKET_NUMBER='"+pp+"'";
+                                    String dd="delete from datatable where TICKET_NUMBER='"+ pp +"'";
                                     stmt2.executeQuery(dd);
+                                    Alert srt1=new Alert(Alert.AlertType.INFORMATION);
+                                    srt1.setContentText("successfully deleted");
+                                    srt1.showAndWait();
                                 } catch (SQLException e) {
                                     throw new RuntimeException(e);
                                 }
                             }
                         });
                         stg3.setTitle("ticket form");
-                        Scene scene2 = new Scene(g3, 500, 500, Color.CHOCOLATE);
+                        Scene scene2 = new Scene(g3, 500, 500, Color.DARKBLUE);
                         stg3.setScene(scene2);
                         stg3.setResizable(false);
                         stg3.show();
@@ -278,7 +282,7 @@ System.exit(0);
 
 
                 stg.setTitle("ticket form");
-                Scene scene1 = new Scene(g1, 500, 500, Color.CHOCOLATE);
+                Scene scene1 = new Scene(g1, 500, 500, Color.DARKBLUE);
                 stg.setScene(scene1);
                 stg.setResizable(false);
                 stg.show();
